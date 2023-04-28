@@ -24,7 +24,7 @@
     }
 
     .title{
-        padding: 20px;
+        padding: 10px;
         margin-bottom: 20px;
         background-color: #87CBB9;
         display: grid;
@@ -47,11 +47,12 @@
     }
 
     .button-check{
-        width: 108px;
+        width: 100%;
         background: #87CBB9;
         border: 0px;
         padding: 4px;
         border-radius: 5px;
+        margin-top: 10px;
     }
 
     .button-check:hover{
@@ -82,13 +83,13 @@
         <div class="count-card">
             <div class="title">Let's count together</div>
             <div class="text-row">
-                <label for="text">Enter the Word</label>
-                <input type="text" name="count" id="count">
+                <textarea name="count" id="count" cols="30" rows="10"></textarea>
                 <input type="submit" value="Check" class="button-check" onclick="return count();">
             </div>
             <div class="showcount">
                 <div class="vowal">N&#186; Vowal: <span id="vowal"></span></div>
                 <div class="consonant">N&#186; Consonant: <span id="consonant"></span></div>
+                <div class="vowal">N&#186; Words: <span id="words"></span></div>
             </div>
         </div>
     </div>
@@ -101,23 +102,23 @@
         });
 
         function count(){
-            let stringText = document.getElementById('count').value.toLowerCase();
+            let stringText = document.getElementById('count').value.toLowerCase().trim();
             let vowels = ['a','e','i','o','u'];
             let Consonat = ['b','c','d','f','g','h','j','k','l','m','n','p','q','r','s','t','v','w','x','y','z'];
             let vowelsCount = 0;
             let ConsonatCount = 0;
-
+            let words = stringText.split(" ").length;
 
             for(let k = 0; k < stringText.length; k++){
                 //for to count the vowels
                 for(let l = 0; l < vowels.length; l++){
-                    if(stringText[k] == vowels[l]){
+                    if(stringText[k] === vowels[l]){
                         vowelsCount += 1;
                     }
                 }
                 // for to count the Consonat
                 for(let c=0; c < Consonat.length; c++){
-                    if(stringText[k] == Consonat[c]){
+                    if(stringText[k] === Consonat[c]){
                         ConsonatCount += 1;
                     }
                 }
@@ -125,6 +126,7 @@
 
             document.getElementById('vowal').innerHTML = vowelsCount;
             document.getElementById('consonant').innerHTML = ConsonatCount;
+            document.getElementById('words').innerHTML = words;
         }
     </script>
 </body>
